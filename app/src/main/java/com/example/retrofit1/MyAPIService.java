@@ -11,7 +11,7 @@ import retrofit2.http.Header;
 import retrofit2.http.Path;
 
 public interface MyAPIService {
-
+//我的"hi"是資料表rec...Ze9是我特定資料的id api_key是我的api(不要動ouo)
     @GET("hi/recAMmLkg1jdFJZe9?api_key=keyKsJNFtZhy4rUjk")
     Call<Infor> getInfor();
 

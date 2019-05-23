@@ -8,7 +8,7 @@ public class RetrofitManager {
 
     private RetrofitManager(){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.airtable.com/v0/appPgLBEOqAYHOMnX/")
+                .baseUrl("https://api.airtable.com/v0/appPgLBEOqAYHOMnX/")//這是我的，請填上自己的
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         myAPIService = retrofit.create(MyAPIService.class);

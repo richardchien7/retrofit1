@@ -20,24 +20,24 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mtext_view_result = (TextView) findViewById(R.id.text_view_result);
 
-        //getinfor();
+        //getinfor();//這是拿取資料
 
 //        try {
-//            postinfor();
+//            postinfor();//新增資料
 //        } catch (Exception e) {
 //            mtext_view_result.setText(e.toString());
 //            Log.e("MainActivity", e.getMessage());//
 //        }
 
         try {
-            // deleteinfor();
+            // deleteinfor();刪除資料
         } catch (Exception e) {
             mtext_view_result.setText(e.toString());
             Log.e("MainActivity", e.getMessage());//
         }
 
         try {
-            changeinfor();
+            changeinfor();//修改資料
         } catch (Exception e) {
             mtext_view_result.setText(e.toString());
             Log.e("MainActivity", e.getMessage());//
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         myAPIService = RetrofitManager.getInstance().getAPI();
         Call<Infor> call = myAPIService.getInfor();
 
-        call.enqueue(new Callback<Infor>() {
+        call.enqueue(new Callback<Infor>() {//成功透過onresponse回傳 失敗用onfailure回傳
             @Override
             public void onResponse(Call<Infor> call, Response<Infor> response) {
                 String id = response.body().getfieldsName();
