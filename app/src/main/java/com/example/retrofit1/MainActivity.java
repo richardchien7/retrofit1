@@ -20,7 +20,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mtext_view_result = (TextView) findViewById(R.id.text_view_result);
 
-        //getinfor();//這是拿取資料
+        try {// deleteinfor();刪除資料
+            getinfor();
+        } catch (Exception e) {
+            mtext_view_result.setText(e.toString());
+            Log.e("MainActivity", e.getMessage());//
+        }//這是拿取資料
 
 //        try {
 //            postinfor();//新增資料
@@ -37,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         try {
-            changeinfor();//修改資料
+            //changeinfor();//修改資料
         } catch (Exception e) {
             mtext_view_result.setText(e.toString());
             Log.e("MainActivity", e.getMessage());//
@@ -52,8 +57,8 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<Infor>() {//成功透過onresponse回傳 失敗用onfailure回傳
             @Override
             public void onResponse(Call<Infor> call, Response<Infor> response) {
-                String id = response.body().getfieldsName();
-                mtext_view_result.setText(id);
+                //String id = response.body().getfieldsName();
+                mtext_view_result.setText(response.body().getId() + " hi");
             }
 
             @Override
