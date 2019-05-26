@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -13,6 +16,7 @@ import retrofit2.Retrofit;
 public class MainActivity extends AppCompatActivity {
     MyAPIService myAPIService;
     private TextView mtext_view_result;
+    ArrayList<Infor> array = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,14 +24,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mtext_view_result = (TextView) findViewById(R.id.text_view_result);
 
-        //getinfor();//這是拿取資料
+        try {
+            getinfor();//這是拿取資料
+        } catch (Exception e) {
+            mtext_view_result.setText(e.toString()+ " hello");
+            Log.e("MainActivity", e.getMessage());//
+        }//這是拿取資料
 
-//        try {
-//            postinfor();//新增資料
-//        } catch (Exception e) {
-//            mtext_view_result.setText(e.toString());
-//            Log.e("MainActivity", e.getMessage());//
-//        }
+        try {
+            //postinfor();//新增資料
+        } catch (Exception e) {
+            mtext_view_result.setText(e.toString());
+            Log.e("MainActivity", e.getMessage());//
+        }
 
         try {
             // deleteinfor();刪除資料
@@ -37,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         try {
-            changeinfor();//修改資料
+            //changeinfor();//修改資料
         } catch (Exception e) {
             mtext_view_result.setText(e.toString());
             Log.e("MainActivity", e.getMessage());//
@@ -48,12 +57,22 @@ public class MainActivity extends AppCompatActivity {
     public void getinfor() {
         myAPIService = RetrofitManager.getInstance().getAPI();
         Call<Infor> call = myAPIService.getInfor();
+        //mtext_view_result.setText(call.toString());
 
         call.enqueue(new Callback<Infor>() {//成功透過onresponse回傳 失敗用onfailure回傳
             @Override
             public void onResponse(Call<Infor> call, Response<Infor> response) {
-                String id = response.body().getfieldsName();
-                mtext_view_result.setText(id);
+                //String id = response.body().getfieldsName();
+               // mtext_view_result.setText("success");
+
+                mtext_view_result.append(response.body().getId(0) + "ho");
+                //Infor infor = new Infor(response.body().getId(), response.body().getFields(), response.body().getCreateTime());
+               //array.add(infor);
+                //mtext_view_result.setText(infor.getId()+"hi");
+                String content = "";
+//                for(Infor word: array){
+//                    mtext_view_result.append(word.getfieldsName()+"\n");
+//                }
             }
 
             @Override
@@ -69,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<Infor>() {
             @Override
             public void onResponse(Call<Infor> call, Response<Infor> response) {
+
                 mtext_view_result.setText(response.body().getfieldsName());
             }
 
@@ -80,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void deleteinfor(){
+    public void deleteinfor() {
         myAPIService = RetrofitManager.getInstance().getAPI();
         Call<Infor> call = myAPIService.deleteInfor();
         call.enqueue(new Callback<Infor>() {
@@ -96,9 +116,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void changeinfor(){
+    public void changeinfor() {
         myAPIService = RetrofitManager.getInstance().getAPI();
-        Call<Infor> call = myAPIService.changeInfor(new Req(new fields("11111","111112")));
+        Call<Infor> call = myAPIService.changeInfor(new Req(new fields("11111", "111112")));
         call.enqueue(new Callback<Infor>() {
             @Override
             public void onResponse(Call<Infor> call, Response<Infor> response) {

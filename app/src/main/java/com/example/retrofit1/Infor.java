@@ -1,7 +1,8 @@
 package com.example.retrofit1;
 
 public class Infor {
-    private String id;
+    private Infor[] records;
+    private String id = "1";
     private fields fields;
     private String createTime;
 
@@ -11,8 +12,12 @@ public class Infor {
         this.createTime = createTime;
     }
 
-    public String getId() {
-        return id;
+    public Infor[] getRecords() {
+        return records;
+    }
+
+    public String getId(int i) {
+        return records[i].id;
     }
 
     public String getfieldsName() {
@@ -23,7 +28,12 @@ public class Infor {
         return fields.getNotes();
     }
 
+    public fields getFields() {
+        return fields;
+    }
+
     public String getCreateTime() {
         return createTime;
     }
+
 }
