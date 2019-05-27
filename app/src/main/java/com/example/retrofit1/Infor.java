@@ -20,10 +20,12 @@ public class Infor {
         return records[i].id;
     }
 
-    public String getfieldsName() {
-        return fields.getName();
+    public String getfieldsName(int i) {
+        return records[i].getFields().getName();
     }
-
+    public String getfieldsName() {
+        return getFields().getName();
+    }
     public String getfieldsNote(){
         return fields.getNotes();
     }

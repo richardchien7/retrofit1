@@ -25,14 +25,14 @@ public class MainActivity extends AppCompatActivity {
         mtext_view_result = (TextView) findViewById(R.id.text_view_result);
 
         try {
-            getinfor();//這是拿取資料
+           // getinfor();//這是拿取資料
         } catch (Exception e) {
             mtext_view_result.setText(e.toString()+ " hello");
             Log.e("MainActivity", e.getMessage());//
         }//這是拿取資料
 
         try {
-            //postinfor();//新增資料
+            postinfor();//新增資料
         } catch (Exception e) {
             mtext_view_result.setText(e.toString());
             Log.e("MainActivity", e.getMessage());//
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                 //String id = response.body().getfieldsName();
                // mtext_view_result.setText("success");
 
-                mtext_view_result.append(response.body().getId(0) + "ho");
+                mtext_view_result.append(response.body().getfieldsName(0) + "ho");
                 //Infor infor = new Infor(response.body().getId(), response.body().getFields(), response.body().getCreateTime());
                //array.add(infor);
                 //mtext_view_result.setText(infor.getId()+"hi");
@@ -83,19 +83,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void postinfor() {
-        myAPIService = RetrofitManager.getInstance().getAPI();
-        Call<Infor> call = myAPIService.postInfor(new Req(new fields("123123", "raymondddd")));
-        call.enqueue(new Callback<Infor>() {
-            @Override
-            public void onResponse(Call<Infor> call, Response<Infor> response) {
+                myAPIService = RetrofitManager.getInstance().getAPI();
+                Call<Infor> call = myAPIService.postInfor(new Req(new fields("fuck", "wtf")));
+                call.enqueue(new Callback<Infor>() {
+                    @Override
+                    public void onResponse(Call<Infor> call, Response<Infor> response) {
 
-                mtext_view_result.setText(response.body().getfieldsName());
-            }
+                        mtext_view_result.setText(response.body().getfieldsName());
+                    }
 
-            @Override
-            public void onFailure(Call<Infor> call, Throwable t) {
-                mtext_view_result.setText(t.getMessage());
-            }
+                    @Override
+                    public void onFailure(Call<Infor> call, Throwable t) {
+                        mtext_view_result.setText(t.getMessage());
+                    }
         });
 
     }
