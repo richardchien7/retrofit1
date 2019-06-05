@@ -30,7 +30,7 @@ public interface MyAPIService {
     @DELETE("hi/recOzDwjVrTf2rj5b?api_key=keyKsJNFtZhy4rUjk")
     Call<Infor> deleteInfor();
 
-    @PATCH("hi/recOzDwjVrTf2rj5b?api_key=keyKsJNFtZhy4rUjk")
+    @PATCH("hi/recwo0TPFDUfUu1At?api_key=keyKsJNFtZhy4rUjk")
     @Headers({
             "Accept: application/json; charset=utf-8",
             "Content-Type: application/json; charset=utf-8"
