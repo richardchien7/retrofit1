@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         }//這是拿取資料
 
         try {
-            // postinfor();//新增資料
+             postinfor();//新增資料
         } catch (Exception e) {
             mtext_view_result.setText(e.toString());
             Log.e("MainActivity", e.getMessage());//
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         try {
-            changeinfor();//修改資料
+            //changeinfor();//修改資料
         } catch (Exception e) {
             mtext_view_result.setText(e.toString());
             Log.e("MainActivity", e.getMessage());//
@@ -78,11 +78,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void postinfor() {
         myAPIService = RetrofitManager.getInstance().getAPI();
-        Call<Infor> call = myAPIService.postInfor(new Req(new fields("richard")));
+        Call<Infor> call = myAPIService.postInfor(new Req(new fields("123123","123123")));
         call.enqueue(new Callback<Infor>() {
             @Override
             public void onResponse(Call<Infor> call, Response<Infor> response) {
-
                 mtext_view_result.setText(response.body().getfieldsName());
             }
 

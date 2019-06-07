@@ -6,8 +6,8 @@ public class fields {
     private String test;
 //因為我測試資料只放Notes,Name兩個欄位，可以自己加
     public fields(String notes, String name) {
-        Notes = notes;
-        Name = name;
+        this.Notes = notes;
+        this.Name = name;
     }
 
     public fields(String test) {
